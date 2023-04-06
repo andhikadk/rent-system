@@ -116,7 +116,10 @@ const AnalyticStats = () => {
           </span>
           <div className='flex items-center'>
             <strong className='text-xl text-neutral-200 font-semibold'>
-              {averageDuration[0].averageDuration.toFixed(2)} jam
+              {averageDuration[0]?.averageDuration
+                ? averageDuration[0].averageDuration.toFixed(2)
+                : 0}{' '}
+              jam
             </strong>
           </div>
         </div>

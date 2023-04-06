@@ -24,7 +24,7 @@ const DashboardStats = () => {
   const totalUnits = units.totalData;
   const totalOrders = orders.totalData;
   const totalSales = orders.data
-    .filter((order: any) => order.status === 'paid')
+    ?.filter((order: any) => order.status === 'paid')
     .filter((order: any) => {
       const date = new Date(order.createdAt);
       const month = date.getMonth();
