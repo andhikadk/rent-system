@@ -158,7 +158,6 @@ const TableUnit = () => {
         </div>
       </div>
       <DataTable
-        // @ts-expect-error
         columns={columns}
         data={filteredItems}
         pagination
