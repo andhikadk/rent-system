@@ -5,13 +5,12 @@ import Sidebar from '../navbar/Sidebar';
 import Header from '../navbar/Header';
 import { ImSpinner } from 'react-icons/im';
 
-interface Props {
+type Props = {
   children: React.ReactNode;
-}
+};
 
-const MainLayout: React.FC<Props> = ({ children }: any) => {
+const MainLayout: React.FC<Props> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(true);
-  const [hidden, setHidden] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {

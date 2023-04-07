@@ -62,3 +62,30 @@ export const BottomSidebarLinks: SidebarLink[] = [
     icon: <HiOutlineQuestionMarkCircle />,
   },
 ];
+
+export const AnalyticsLinks: SidebarLink[] = [
+  {
+    key: 'summary',
+    label: 'Summary',
+    path: '/analytics',
+    icon: <HiOutlineViewGrid />,
+  },
+  {
+    key: 'orders',
+    label: 'Orders',
+    path: '/analytics/orders',
+    icon: <HiOutlineShoppingCart />,
+  },
+  {
+    key: 'customers',
+    label: 'Customers',
+    path: '/analytics/customers',
+    icon: <HiOutlineUsers />,
+  },
+  {
+    key: 'units',
+    label: 'Units',
+    path: '/analytics/units',
+    icon: <HiOutlineCamera />,
+  },
+];
