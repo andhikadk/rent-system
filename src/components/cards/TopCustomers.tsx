@@ -20,14 +20,14 @@ const TopCustomers = () => {
         {customers
           .map((customer) => (
             <div key={customer._id} className='flex flex-row'>
-              <div className='w-10 h-10 min-w-[2.5rem] bg-gray-200 rounded-sm'>
+              {/* <div className='w-10 h-10 min-w-[2.5rem] bg-gray-200 rounded-sm'>
                 <img
                   className='w-full h-full object-cover rounded-sm'
                   src='https://xsgames.co/randomusers/avatar.php?g=male'
                   alt='customer'
                 />
-              </div>
-              <div className='ml-4 flex-1'>
+              </div> */}
+              <div className='flex-1'>
                 <p className='text-sm text-white'>{customer._id}</p>
                 <span className='text-green-500 text-xs font-medium'>
                   {customer.totalOrder} orders

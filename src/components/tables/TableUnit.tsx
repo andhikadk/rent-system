@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HiOutlineSearch, HiPlus, HiPencilAlt, HiX } from 'react-icons/hi';
 import DataTable from 'react-data-table-component';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { Unit } from '../../types';
 import { unitsData } from '../../store';
 import Button from '../common/Button';

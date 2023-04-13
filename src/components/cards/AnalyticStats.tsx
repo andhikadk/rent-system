@@ -62,9 +62,14 @@ const AnalyticStats = () => {
   const orders = useRecoilValue(ordersData);
   const averageDuration = useRecoilValue(averageDurationData);
   const totalCustomers = customers.length;
-  const totalUnits = units.totalData;
-  const totalOrders = orders.totalData;
-  const totalSales = orders.totalSales;
+  const totalUnits = units.length;
+  const totalOrders = orders.length;
+  const totalSales = orders
+    .filter((order: any) => order.status === 'paid')
+    .map((order: any) => order.total_cost)
+    .reduce((acc: any, order: any) => {
+      return acc + order;
+    }, 0);
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-5 lg:grid-cols-10 gap-4'>

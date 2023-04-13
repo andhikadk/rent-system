@@ -31,8 +31,33 @@ export type Unit = {
 
 export type Order = {
   id: number;
-  customer: string;
-  date: string;
+  createdAt: string;
+  updatedAt: string;
+  cust_id: {
+    _id: string;
+    name: string;
+  };
+  units: string[];
+  served_by: string;
+  pickup_date: string;
+  return_date: string;
+  duration: number;
+  price: number;
+  discount: number;
+  total_cost: number;
+  remaining_cost: number;
+  received_time: string;
+  received_by: string;
+  note: string;
+  status: string;
+  payment: {
+    type: string;
+    amount: number;
+  };
+  repayment: {
+    type: string;
+    amount: number;
+  };
 };
 
 export type PopularUnit = {

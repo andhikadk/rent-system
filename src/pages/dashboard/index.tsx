@@ -4,6 +4,7 @@ import TotalSalesPerDay from '../../components/charts/TotalSalesPerDay';
 import CustomerType from '../../components/charts/CustomerType';
 import PopularUnits from '../../components/cards/PopularUnits';
 import TopCustomers from '../../components/cards/TopCustomers';
+import RecentOrders from '../../components/tables/RecentOrders';
 
 const Dashboard: React.FC = () => {
   return (
@@ -16,16 +17,10 @@ const Dashboard: React.FC = () => {
             <TotalSalesPerDay />
           </div>
           <div className='col-span-6 lg:col-span-2'>
-            <CustomerType />
-          </div>
-          <div className='col-span-6 lg:col-span-5'>
-            {/* <TotalSalesPerMonth /> */}
-          </div>
-          <div className='col-span-6 lg:col-span-3'>
             <TopCustomers />
           </div>
           <div className='col-span-6 lg:col-span-5'>
-            {/* <TotalSalesPerMonth /> */}
+            <RecentOrders />
           </div>
           <div className='col-span-6 lg:col-span-3'>
             <PopularUnits />
