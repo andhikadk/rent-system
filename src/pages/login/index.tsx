@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Button from '../../components/common/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Swal from 'sweetalert2';
 
 const Alert = ({ message }: { message: string }) => {
   return (
@@ -55,13 +54,7 @@ const Login = () => {
         password,
       });
       if (response.data.message === 'Login successful') {
-        navigate('/', {
-          replace: true,
-          state: {
-            message: 'Login successfully',
-            type: 'success',
-          },
-        });
+        navigate('/');
       }
     } catch (error: any) {
       setError(true);
