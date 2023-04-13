@@ -21,30 +21,50 @@ const BoxWrapper = ({ children }: any) => {
   );
 };
 
+export const formatNumber = (number: number) => {
+  let formattedNumber;
+  if (number >= 1000000000) {
+    formattedNumber = `Rp ${
+      Math.round((number / 1000000000) * 10) / 10
+    } miliar`;
+  } else if (number >= 1000000) {
+    formattedNumber = `Rp ${Math.round((number / 1000000) * 10) / 10} juta`;
+  } else {
+    formattedNumber = `Rp ${Math.round(number / 1000)} ribu`;
+  }
+
+  return formattedNumber;
+};
+
+export const formatMonth = (date: string): string => {
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'Mei',
+    'Jun',
+    'Jul',
+    'Ags',
+    'Sep',
+    'Okt',
+    'Nov',
+    'Des',
+  ];
+  const [year, monthIndex] = date.split('-');
+  const month = months[Number(monthIndex) - 1];
+  return `${month} ${year}`;
+};
+
 const AnalyticStats = () => {
   const customers = useRecoilValue(customersData);
   const units = useRecoilValue(unitsData);
   const orders = useRecoilValue(ordersData);
   const averageDuration = useRecoilValue(averageDurationData);
-  const totalCustomers = customers.totalData;
+  const totalCustomers = customers.length;
   const totalUnits = units.totalData;
   const totalOrders = orders.totalData;
   const totalSales = orders.totalSales;
-
-  const formatNumber = (number: number) => {
-    let formattedNumber;
-    if (number >= 1000000000) {
-      formattedNumber = `Rp ${
-        Math.round((number / 1000000000) * 10) / 10
-      } miliar`;
-    } else if (number >= 1000000) {
-      formattedNumber = `Rp ${Math.round((number / 1000000) * 10) / 10} juta`;
-    } else {
-      formattedNumber = `Rp ${Math.round(number / 1000)} ribu`;
-    }
-
-    return formattedNumber;
-  };
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-5 lg:grid-cols-10 gap-4'>

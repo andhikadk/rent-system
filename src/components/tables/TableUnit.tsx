@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HiOutlineSearch, HiPlus, HiPencilAlt, HiX } from 'react-icons/hi';
 import DataTable from 'react-data-table-component';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { Unit } from '../../types';
-import { unitsState, unitsData } from '../../store';
+import { unitsData } from '../../store';
 import Button from '../common/Button';
 
 const columns = [
@@ -109,8 +109,7 @@ const tableStyle: {} = {
 };
 
 const TableUnit = () => {
-  const data = useRecoilValue(unitsData);
-  const [units, setUnits] = useRecoilState(unitsState);
+  const units = useRecoilValue(unitsData);
   const [filter, setFilter] = useState('');
   const [modal, setModal] = useState(false);
   const [unitDetail, setUnitDetail] = useState<Unit>();
@@ -122,10 +121,6 @@ const TableUnit = () => {
       .toLowerCase()
       .includes(filter.toLowerCase())
   );
-
-  useEffect(() => {
-    setUnits(data.data);
-  }, [data]);
 
   const onRowClicked = (row: Unit) => {
     setModal(true);
