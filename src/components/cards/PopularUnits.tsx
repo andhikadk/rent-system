@@ -1,16 +1,9 @@
-import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { popularUnitsData, popularUnitsState } from '../../store';
+import { useRecoilValue } from 'recoil';
+import { popularUnitsData } from '../../store';
 import { PopularUnit } from '../../types';
 
 const PopularUnits = () => {
-  const data = useRecoilValue(popularUnitsData);
-  const [popularUnits, setPopularUnits] =
-    useRecoilState<PopularUnit[]>(popularUnitsState);
-
-  useEffect(() => {
-    setPopularUnits(data.data);
-  }, [data]);
+  const popularUnits = useRecoilValue<PopularUnit[]>(popularUnitsData);
 
   return (
     <div className='min-h-[22rem] bg-neutral-700 p-4 rounded-sm flex flex-col'>

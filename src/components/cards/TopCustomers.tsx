@@ -1,17 +1,10 @@
-import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { topCustomersData, topCustomersState } from '../../store';
+import { useRecoilValue } from 'recoil';
+import { topCustomersData } from '../../store';
 import { TopCustomer } from '../../types';
 import { Link } from 'react-router-dom';
 
 const TopCustomers = () => {
-  const data = useRecoilValue(topCustomersData);
-  const [topCustomers, setTopCustomers] =
-    useRecoilState<TopCustomer>(topCustomersState);
-
-  useEffect(() => {
-    setTopCustomers(data.data);
-  }, [data]);
+  const customers = useRecoilValue<TopCustomer>(topCustomersData);
 
   return (
     <div className='min-h-[22rem] bg-neutral-700 p-4 rounded-sm flex flex-col'>
@@ -24,7 +17,7 @@ const TopCustomers = () => {
         </Link>
       </div>
       <div className='mt-4 flex flex-col gap-4'>
-        {topCustomers
+        {customers
           .map((customer) => (
             <div key={customer._id} className='flex flex-row'>
               <div className='w-10 h-10 min-w-[2.5rem] bg-gray-200 rounded-sm'>

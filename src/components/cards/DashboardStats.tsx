@@ -2,7 +2,7 @@ import { useRecoilValue } from 'recoil';
 import { customersData, ordersData, unitsData } from '../../store';
 import {
   IoBagHandle,
-  IoCameraSharp,
+  IoCalendar,
   IoPeople,
   IoCart,
   IoTime,
@@ -17,12 +17,7 @@ const BoxWrapper = ({ children }: any) => {
 };
 
 const DashboardStats = () => {
-  const customers = useRecoilValue(customersData);
-  const units = useRecoilValue(unitsData);
   const orders = useRecoilValue(ordersData);
-  const totalCustomers = customers.totalData;
-  const totalUnits = units.totalData;
-  const totalOrders = orders.totalData;
   const totalSales = orders.data
     ?.filter((order: any) => order.status === 'paid')
     .filter((order: any) => {
@@ -50,23 +45,23 @@ const DashboardStats = () => {
           <IoPeople className='text-2xl text-white' />
         </div>
         <div className='pl-4'>
-          <span className='text-sm text-white font-light'>Total Customers</span>
+          <span className='text-sm text-white font-light'>New Customers</span>
           <div className='flex items-center'>
             <strong className='text-xl text-neutral-200 font-semibold'>
-              {totalCustomers}
+              0
             </strong>
           </div>
         </div>
       </BoxWrapper>
       <BoxWrapper>
         <div className='rounded-full h-12 w-12 flex items-center justify-center bg-orange-600'>
-          <IoCameraSharp className='text-2xl text-white' />
+          <IoCalendar className='text-2xl text-white' />
         </div>
         <div className='pl-4'>
-          <span className='text-sm text-white font-light'>Total Units</span>
+          <span className='text-sm text-white font-light'>Total Bookings</span>
           <div className='flex items-center'>
             <strong className='text-xl text-neutral-200 font-semibold'>
-              {totalUnits}
+              0
             </strong>
           </div>
         </div>
@@ -76,10 +71,10 @@ const DashboardStats = () => {
           <IoCart className='text-2xl text-white' />
         </div>
         <div className='pl-4'>
-          <span className='text-sm text-white font-light'>Total Orders</span>
+          <span className='text-sm text-white font-light'>Orders Today</span>
           <div className='flex items-center'>
             <strong className='text-xl text-neutral-200 font-semibold'>
-              {totalOrders}
+              0
             </strong>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { HiOutlineSearch, HiMenu, HiChevronDown } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
@@ -8,28 +8,8 @@ import { useRecoilValue } from 'recoil';
 import { authUser } from '../../store';
 
 const Header = ({ toggle }: any) => {
-  const token = useRecoilValue(authUser);
-  const [user, setUser] = useState<any>({});
+  const user = useRecoilValue(authUser);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (token) {
-      getUser(token.accessToken);
-    }
-  }, [token]);
-
-  const getUser = async (accessToken: string) => {
-    try {
-      const { data } = await axios.get('/auth/user', {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      setUser(data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const logout = async () => {
     try {

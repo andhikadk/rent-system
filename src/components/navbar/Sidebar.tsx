@@ -15,7 +15,10 @@ const SidebarLinks = ({ link }: { link: SidebarLink }) => {
     <Link
       to={link.path}
       className={classNames(
-        pathname === link.path
+        pathname.startsWith(link.path) && link.path !== '/'
+          ? 'bg-neutral-700 text-white'
+          : 'text-neutral-400',
+        pathname === link.path && link.path === '/'
           ? 'bg-neutral-700 text-white'
           : 'text-neutral-400',
         'flex items-center gap-2 font-light px-3 py-2 hover:bg-neutral-700 active:bg-neutral-600 rounded-sm text-base'
@@ -34,7 +37,9 @@ const Sidebar = ({ isOpen }: any) => {
         'flex flex-col bg-neutral-800 w-60 p-3 text-white transition-all duration-300 ease-in-out'
       )}>
       <div className='flex items-center justify-center gap-2 px-1 py-3'>
-        <h1 className='text-neutral-100 font-bold text-xl'>Logo Here</h1>
+        <h1 className='text-neutral-100 font-bold text-xl'>
+          Omah Visual Camera
+        </h1>
       </div>
       <div className='py-4 flex flex-1 flex-col gap-0.5'>
         {TopSidebarLinks.map((link) => (
