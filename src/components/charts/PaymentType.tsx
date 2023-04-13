@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
+import { paymentTypeData } from '../../store';
 import { useRecoilValue } from 'recoil';
-import { customersData } from '../../store';
-import { Customer } from '../../types';
 
 const colors = ['#0284c7', '#ca8a04'];
 
@@ -31,35 +29,61 @@ const renderCustomizedLabel = ({
   );
 };
 
-const CustomerType = () => {
-  const customers = useRecoilValue(customersData);
+interface Payment {
+  total: number;
+  payment_type: string;
+}
 
-  const countByType = customers.reduce(
-    (
-      acc: {
-        [key: string]: number;
-      },
-      curr: Customer
-    ) => {
-      acc[curr.type] = (acc[curr.type] || 0) + 1;
-      return acc;
+interface Repayment {
+  total: number;
+  repayment_type: string;
+}
+
+interface PaymentData {
+  payment: Payment[];
+  repayment: Repayment[];
+}
+
+const PaymentType = () => {
+  const data = useRecoilValue(paymentTypeData);
+  let bca: number = 0;
+  let tunai: number = 0;
+
+  data.forEach((item: PaymentData) => {
+    item.payment.forEach((payment: Payment) => {
+      if (payment.payment_type === 'BCA') {
+        bca += payment.total;
+      } else if (payment.payment_type === 'Tunai') {
+        tunai += payment.total;
+      }
+    });
+    item.repayment.forEach((repayment: Repayment) => {
+      if (repayment.repayment_type === 'BCA') {
+        bca += repayment.total;
+      } else if (repayment.repayment_type === 'Tunai') {
+        tunai += repayment.total;
+      }
+    });
+  });
+
+  const datas = [
+    {
+      name: 'BCA',
+      value: bca,
     },
-    {}
-  );
-
-  const data = Object.keys(countByType).map((key) => ({
-    name: key,
-    value: countByType[key],
-  }));
-
+    {
+      name: 'Tunai',
+      value: tunai,
+    },
+  ];
   return (
     <div className='h-[22rem] bg-neutral-700 p-4 rounded-sm flex flex-col'>
-      <strong className='text-white font-medium'>Customer Type</strong>
+      <strong className='text-white font-medium'>Payment Type</strong>
       <div className='mt-3 w-full flex-1 text-xs'>
         <ResponsiveContainer width='100%' height='100%'>
           <PieChart width={400} height={300}>
             <Pie
-              data={data}
+              data={datas}
               cx='50%'
               cy='45%'
               labelLine={false}
@@ -70,7 +94,7 @@ const CustomerType = () => {
               isAnimationActive={false}
               onClick={() => {}}
               dataKey='value'>
-              {data.map((_, index) => (
+              {datas.map((_, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={colors[index % colors.length]}
@@ -85,4 +109,4 @@ const CustomerType = () => {
   );
 };
 
-export default CustomerType;
+export default PaymentType;

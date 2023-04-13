@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { HiOutlineSearch, HiPlus, HiPencilAlt, HiX } from 'react-icons/hi';
 import DataTable from 'react-data-table-component';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { HiOutlineSearch, HiPlus, HiPencilAlt, HiX } from 'react-icons/hi';
+import { useRecoilValue } from 'recoil';
 import { Customer } from '../../types';
-import { customerState, customersData } from '../../store';
+import { customersData } from '../../store';
 import Button from '../common/Button';
 
 const columns = [
@@ -97,8 +97,7 @@ const tableStyle: {} = {
 };
 
 const TableCustomer = () => {
-  const data = useRecoilValue(customersData);
-  const [customers, setCustomers] = useRecoilState(customerState);
+  const customers = useRecoilValue(customersData);
   const [filter, setFilter] = useState('');
   const [modal, setModal] = useState(false);
   const [customerDetail, setCustomerDetail] = useState<Customer>();
@@ -111,10 +110,6 @@ const TableCustomer = () => {
       .toLowerCase()
       .includes(filter.toLowerCase())
   );
-
-  useEffect(() => {
-    setCustomers(data.data);
-  }, [data]);
 
   const onRowClicked = (row: Customer) => {
     setModal(true);

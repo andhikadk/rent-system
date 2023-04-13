@@ -1,22 +1,30 @@
-import { selector, atom } from 'recoil';
+import { selector } from 'recoil';
 import axios from 'axios';
-import { PopularUnit, TopCustomer } from '../types';
+
+export const authToken = async () => {
+  try {
+    const response = await axios.get('/auth/token');
+    return response.data.data.accessToken;
+  } catch (error: any) {
+    return error.message;
+  }
+};
 
 export const authUser = selector({
   key: 'authUser',
   get: async () => {
     try {
-      const response = await axios.get('/auth/token');
-      return response.data.data;
+      const token = await authToken();
+      const { data } = await axios.get('/auth/user', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return data.data;
     } catch (error: any) {
       return error.message;
     }
   },
-});
-
-export const customerState = atom({
-  key: 'customerState',
-  default: [],
 });
 
 export const customersData = selector({
@@ -24,16 +32,11 @@ export const customersData = selector({
   get: async () => {
     try {
       const response = await axios.get('/customers');
-      return response.data;
+      return response.data.data;
     } catch (error: any) {
       return error.message;
     }
   },
-});
-
-export const unitsState = atom({
-  key: 'unitsState',
-  default: [],
 });
 
 export const unitsData = selector({
@@ -41,16 +44,11 @@ export const unitsData = selector({
   get: async () => {
     try {
       const response = await axios.get('/units');
-      return response.data;
+      return response.data.data;
     } catch (error: any) {
       return error.message;
     }
   },
-});
-
-export const ordersState = atom({
-  key: 'ordersState',
-  default: [],
 });
 
 export const ordersData = selector({
@@ -65,26 +63,16 @@ export const ordersData = selector({
   },
 });
 
-export const popularUnitsState = atom<PopularUnit[]>({
-  key: 'popularUnitsState',
-  default: [],
-});
-
 export const popularUnitsData = selector({
   key: 'popularUnitsData',
   get: async () => {
     try {
       const response = await axios.get('/analytics/top-ordered-units');
-      return response.data;
+      return response.data.data;
     } catch (error: any) {
       return error.message;
     }
   },
-});
-
-export const topCustomersState = atom<TopCustomer>({
-  key: 'topCustomersState',
-  default: [],
 });
 
 export const topCustomersData = selector({
@@ -92,7 +80,7 @@ export const topCustomersData = selector({
   get: async () => {
     try {
       const response = await axios.get('/analytics/top-customers-orders');
-      return response.data;
+      return response.data.data;
     } catch (error: any) {
       return error.message;
     }
@@ -111,11 +99,35 @@ export const totalSalesPerDayData = selector({
   },
 });
 
+export const totalSalesPerMonthData = selector({
+  key: 'totalSalesPerMonthData',
+  get: async () => {
+    try {
+      const response = await axios.get('/analytics/total-sales-per-month');
+      return response.data.data;
+    } catch (error: any) {
+      return error.message;
+    }
+  },
+});
+
 export const averageDurationData = selector({
   key: 'averageDuration',
   get: async () => {
     try {
       const response = await axios.get('/analytics/average-duration');
+      return response.data.data;
+    } catch (error: any) {
+      return error.message;
+    }
+  },
+});
+
+export const paymentTypeData = selector({
+  key: 'paymentTypeData',
+  get: async () => {
+    try {
+      const response = await axios.get('/analytics/payment-type');
       return response.data.data;
     } catch (error: any) {
       return error.message;
