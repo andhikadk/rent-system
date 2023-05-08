@@ -99,6 +99,18 @@ export const totalSalesPerDayData = selector({
   },
 });
 
+export const totalOrdersPerDayData = selector({
+  key: 'totalOrdersPerDayData',
+  get: async () => {
+    try {
+      const response = await axios.get('/analytics/total-orders-per-day');
+      return response.data.data;
+    } catch (error: any) {
+      return error.message;
+    }
+  },
+});
+
 export const totalSalesPerMonthData = selector({
   key: 'totalSalesPerMonthData',
   get: async () => {

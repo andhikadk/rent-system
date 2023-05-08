@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Button from '../../components/common/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Swal from 'sweetalert2';
 
 const Alert = ({ message }: { message: string }) => {
   return (
@@ -112,24 +111,9 @@ const Login = () => {
               required
             />
           </div>
-          <div className='flex justify-end'>
-            <a
-              href='#'
-              className='text-sm text-blue-700 hover:underline dark:text-blue-500'>
-              Lost Password?
-            </a>
-          </div>
           <Button color='primary' fullWidth isSubmit>
             Login
           </Button>
-          <div className='text-sm font-medium text-white'>
-            Not registered?{' '}
-            <Link
-              to='/register'
-              className='text-blue-700 hover:underline dark:text-blue-500'>
-              Create account
-            </Link>
-          </div>
         </form>
       </div>
     </div>

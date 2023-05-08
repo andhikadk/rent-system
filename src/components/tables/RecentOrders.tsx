@@ -96,10 +96,10 @@ const tableStyle: {} = {
 
 const RecentOrders = () => {
   const orders = useRecoilValue<Order[]>(ordersData);
-  const data = [...orders].reverse().slice(0, 5);
+  const data = [...orders].reverse().slice(0, 6);
 
   return (
-    <div className='h-[22rem] bg-neutral-700 p-4 rounded-sm flex flex-col'>
+    <div className='h-full bg-neutral-700 p-4 rounded-sm flex flex-col'>
       <div className='flex justify-between'>
         <strong className='text-white font-medium'>Recent Orders</strong>
       </div>

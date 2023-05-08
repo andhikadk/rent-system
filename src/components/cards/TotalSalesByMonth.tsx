@@ -19,7 +19,7 @@ const TotalSalesByMonth = () => {
         {data.map(({ _id, totalSales, percentageChange }: any) => (
           <div
             key={_id}
-            className='flex flex-row bg-neutral-600 p-4 rounded-sm'>
+            className='flex flex-row text-white bg-neutral-600 p-4 rounded-sm'>
             <div className='flex-1'>{formatMonth(_id)} </div>
             <div>
               {percentageChange !== 0 && (
