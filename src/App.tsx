@@ -13,7 +13,7 @@ import Units from './pages/units';
 import Settings from './pages/settings';
 import NotFound from './pages/404';
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <Router>
       <Routes>

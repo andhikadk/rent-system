@@ -58,6 +58,7 @@ export type Order = {
     type: string;
     amount: number;
   };
+  [key: string]: any;
 };
 
 export type PopularUnit = {

@@ -30,7 +30,10 @@ export const formatNumber = (number: number) => {
   } else if (number >= 1000000) {
     formattedNumber = `Rp ${Math.round((number / 1000000) * 10) / 10} juta`;
   } else {
-    formattedNumber = `Rp ${Math.round(number / 1000)} ribu`;
+    formattedNumber = number.toLocaleString('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+    });
   }
 
   return formattedNumber;

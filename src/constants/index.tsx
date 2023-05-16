@@ -76,16 +76,16 @@ export const AnalyticsLinks: SidebarLink[] = [
     path: '/analytics/orders',
     icon: <HiOutlineShoppingCart />,
   },
-  {
-    key: 'customers',
-    label: 'Customers',
-    path: '/analytics/customers',
-    icon: <HiOutlineUsers />,
-  },
-  {
-    key: 'units',
-    label: 'Units',
-    path: '/analytics/units',
-    icon: <HiOutlineCamera />,
-  },
+  // {
+  //   key: 'customers',
+  //   label: 'Customers',
+  //   path: '/analytics/customers',
+  //   icon: <HiOutlineUsers />,
+  // },
+  // {
+  //   key: 'units',
+  //   label: 'Units',
+  //   path: '/analytics/units',
+  //   icon: <HiOutlineCamera />,
+  // },
 ];

@@ -1,16 +1,18 @@
-import React from 'react';
 import Analytics from './index';
+import ProblemCustomer from '../../components/cards/ProblemCustomer';
+import ProblemCount from '../../components/cards/ProblemCount';
 
 const Orders = () => {
   return (
     <Analytics>
-      <h1 className='text-2xl font-bold text-white mb-4'>Analytics Orders</h1>
-      <ul className='text-white'>
-        <li>persentase pembayaran (tunai/bca)</li>
-        <li>jumlah pesanan per bulan/hari</li>
-        <li>persentase durasi</li>
-        <li>persentase sewa di hari kerja/libur</li>
-      </ul>
+      <div className='flex flex-row gap-4'>
+        <div className='grid gap-4 w-3/4'>
+          <ProblemCustomer />
+        </div>
+        <div className='grid gap-4 w-1/4'>
+          <ProblemCount />
+        </div>
+      </div>
     </Analytics>
   );
 };
