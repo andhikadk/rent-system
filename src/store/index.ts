@@ -75,6 +75,18 @@ export const popularUnitsData = selector({
   },
 });
 
+export const popularUnitByDayData = selector({
+  key: 'popularUnitByDayData',
+  get: async () => {
+    try {
+      const response = await axios.get('/analytics/popular-units/day');
+      return response.data.data;
+    } catch (error: any) {
+      return error.message;
+    }
+  },
+});
+
 export const topCustomersData = selector({
   key: 'topCustomersData',
   get: async () => {
@@ -135,12 +147,44 @@ export const averageDurationData = selector({
   },
 });
 
+export const averageDurationByUnit = selector({
+  key: 'averageDurationByUnit',
+  get: async () => {
+    try {
+      const response = await axios.get('/analytics/average-duration-per-order');
+      return response.data.data;
+    } catch (error: any) {
+      return error.message;
+    }
+  },
+});
+
 export const paymentTypeData = selector({
   key: 'paymentTypeData',
   get: async () => {
     try {
       const response = await axios.get('/analytics/payment-type');
       return response.data.data;
+    } catch (error: any) {
+      return error.message;
+    }
+  },
+});
+
+export const priceRangeData = selector({
+  key: 'priceRangeData',
+  get: async () => {
+    try {
+      const categories = await axios.get('/units/categories');
+
+      const responses = await Promise.all(
+        categories.data.data.map(async (c: string) => {
+          const res = await axios.get(`analytics/price-range/${c}`);
+          return res.data;
+        })
+      );
+
+      return responses;
     } catch (error: any) {
       return error.message;
     }

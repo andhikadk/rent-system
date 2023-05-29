@@ -48,9 +48,9 @@ const MainLayout: React.FC<Props> = ({ children }) => {
             </div>
           }>
           <Header toggle={toggle} />
-          <div className='p-4 w-full max-w-[100rem] overflow-auto self-center'>
+          <main className='p-4 w-full max-w-[100rem] self-center'>
             {children}
-          </div>
+          </main>
         </Suspense>
       </div>
     </div>

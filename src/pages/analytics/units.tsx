@@ -1,14 +1,18 @@
-import React from 'react';
+import AverageDurationByUnit from '../../components/cards/AverageDurationByUnit';
+import PopularUnitByDay from '../../components/cards/PopularUnitByDay';
 import Analytics from './index';
 
 const Units = () => {
   return (
     <Analytics>
-      <h1 className='text-2xl font-bold text-white mb-4'>Analytics Units</h1>
-      <ul className='text-white'>
-        <li>rentang harga</li>
-        <li>unit populer per kategori</li>
-      </ul>
+      <div className='flex flex-row gap-4'>
+        <div className='grid gap-4 w-2/4'>
+          <AverageDurationByUnit />
+        </div>
+        <div className='grid gap-4 w-2/4'>
+          <PopularUnitByDay />
+        </div>
+      </div>
     </Analytics>
   );
 };

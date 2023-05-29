@@ -1,7 +1,6 @@
 import MainLayout from '../../components/layout/MainLayout';
 import DashboardStats from '../../components/cards/DashboardStats';
 import TotalSalesPerDay from '../../components/charts/TotalSalesPerDay';
-import CustomerType from '../../components/charts/CustomerType';
 import PopularUnits from '../../components/cards/PopularUnits';
 import TopCustomers from '../../components/cards/TopCustomers';
 import RecentOrders from '../../components/tables/RecentOrders';

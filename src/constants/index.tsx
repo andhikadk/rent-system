@@ -82,10 +82,32 @@ export const AnalyticsLinks: SidebarLink[] = [
   //   path: '/analytics/customers',
   //   icon: <HiOutlineUsers />,
   // },
-  // {
-  //   key: 'units',
-  //   label: 'Units',
-  //   path: '/analytics/units',
-  //   icon: <HiOutlineCamera />,
-  // },
+  {
+    key: 'units',
+    label: 'Units',
+    path: '/analytics/units',
+    icon: <HiOutlineCamera />,
+  },
+];
+
+export const categories = [
+  'action cam',
+  'audio',
+  'baterei',
+  'drone',
+  'gimbal equipment',
+  'handphone',
+  'kabel',
+  'kamera',
+  'kamera equipment',
+  'lcd monitor',
+  'lcd proyektor',
+  'lensa',
+  'lightstand',
+  'lighting',
+  'lighting equipment',
+  'livecam equipment',
+  'memory',
+  'tripod',
+  'tv',
 ];
