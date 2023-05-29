@@ -1,62 +1,46 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { HiOutlineSearch, HiPlus, HiPencilAlt, HiX } from 'react-icons/hi';
 import DataTable from 'react-data-table-component';
+import { HiOutlineSearch, HiPlus, HiPencilAlt, HiX } from 'react-icons/hi';
 import { useRecoilValue } from 'recoil';
-import { Unit } from '../../types';
-import { unitsData } from '../../store';
+import { Order } from '../../types';
+import { ordersData } from '../../store';
 import Button from '../common/Button';
+import { formatNumber } from '../cards/AnalyticStats';
 
 const columns = [
   {
     name: 'ID',
-    selector: (row: Unit) => row.id,
+    selector: (row: Order) => row.id,
     sortable: true,
     width: '70px',
     center: true,
   },
   {
-    name: 'NAMA',
-    selector: (row: Unit) => row.name,
+    name: 'NAMA CUSTOMER',
+    selector: (row: Order) => row.cust_id.name,
     sortable: true,
   },
   {
-    name: 'KAETEGORI',
-    selector: (row: Unit) => row.category,
+    name: 'UNIT',
+    selector: (row: Order) => row.units.toString().replace(/,/g, ', '),
     sortable: true,
-    width: '200px',
+    width: '400px',
   },
   {
-    name: 'TIPE',
-    selector: (row: Unit) => row.type,
+    name: 'TOTAL HARGA',
+    selector: (row: Order) => formatNumber(row.price),
     sortable: true,
-    width: '150px',
   },
   {
-    name: 'KODE',
-    selector: (row: Unit) => row.code,
+    name: 'PJ KELUAR',
+    selector: (row: Order) => row.served_by,
     sortable: true,
-    width: '120px',
-  },
-  {
-    name: 'OWNER',
-    selector: (row: Unit) => row.owner,
-    sortable: true,
-    width: '120px',
-  },
-  {
-    name: 'LOKASI',
-    selector: (row: Unit) => row.location,
-    sortable: true,
-    width: '100px',
-    center: true,
   },
   {
     name: 'STATUS',
-    selector: (row: Unit) => row.status,
+    selector: (row: Order) => row.status,
     sortable: true,
-    width: '100px',
-    center: true,
   },
   {
     name: 'AKSI',
@@ -108,23 +92,24 @@ const tableStyle: {} = {
   },
 };
 
-const TableUnit = () => {
-  const units = useRecoilValue(unitsData);
+const TableOrder = () => {
+  const orders = useRecoilValue(ordersData);
   const [filter, setFilter] = useState('');
   const [modal, setModal] = useState(false);
-  const [unitDetail, setUnitDetail] = useState<Unit>();
+  const [orderDetail, setOrderDetail] = useState<Order>();
 
-  const filteredItems = units.filter((item: Unit) =>
+  const filteredItems = orders.filter((item: Order) =>
     Object.keys(item)
+      .filter((key) => key !== 'user')
       .map((key) => String(item[key]))
       .join(' ')
       .toLowerCase()
       .includes(filter.toLowerCase())
   );
 
-  const onRowClicked = (row: Unit) => {
+  const onRowClicked = (row: Order) => {
     setModal(true);
-    setUnitDetail(row);
+    setOrderDetail(row);
   };
 
   return (
@@ -144,10 +129,10 @@ const TableUnit = () => {
           />
         </div>
         <div className=''>
-          <Link to='/units/add'>
+          <Link to='/orders/add'>
             <Button color='primary'>
               <HiPlus fontSize={20} className='mr-2' />
-              Add Unit
+              Add Order
             </Button>
           </Link>
         </div>
@@ -172,7 +157,7 @@ const TableUnit = () => {
         <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center'>
           <div className='bg-neutral-50 dark:bg-neutral-700 max-w-[40rem] rounded-sm p-6 shadow-lg z-50'>
             <div className='flex justify-between items-center'>
-              <h1 className='text-xl text-white font-bold'>Customer Details</h1>
+              <h1 className='text-xl text-white font-bold'>Order Details</h1>
               <div className='flex'>
                 <button
                   onClick={() => setModal(false)}
@@ -185,9 +170,9 @@ const TableUnit = () => {
               <div className='relative overflow-x-auto'>
                 <table className='w-full text-sm text-left text-white'>
                   <tbody>
-                    {unitDetail &&
-                      Object.keys(unitDetail).map((key) => {
-                        if (key === '_id' || key === 'rates') return null;
+                    {orderDetail &&
+                      Object.keys(orderDetail).map((key) => {
+                        if (key === '_id') return null;
                         return (
                           <tr
                             key={key}
@@ -198,7 +183,7 @@ const TableUnit = () => {
                               style={{ backgroundColor: 'rgb(38 38 38)' }}>
                               {key.toUpperCase()}
                             </th>
-                            <td className='px-6 py-4'>{unitDetail[key]}</td>
+                            <td className='px-6 py-4'>{orderDetail[key]}</td>
                           </tr>
                         );
                       })}
@@ -216,4 +201,4 @@ const TableUnit = () => {
   );
 };
 
-export default TableUnit;
+export default TableOrder;

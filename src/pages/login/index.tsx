@@ -105,24 +105,9 @@ const Login = () => {
               required
             />
           </div>
-          <div className='flex justify-end'>
-            <a
-              href='#'
-              className='text-sm text-blue-700 hover:underline dark:text-blue-500'>
-              Lost Password?
-            </a>
-          </div>
           <Button color='primary' fullWidth isSubmit>
             Login
           </Button>
-          <div className='text-sm font-medium text-white'>
-            Not registered?{' '}
-            <Link
-              to='/register'
-              className='text-blue-700 hover:underline dark:text-blue-500'>
-              Create account
-            </Link>
-          </div>
         </form>
       </div>
     </div>

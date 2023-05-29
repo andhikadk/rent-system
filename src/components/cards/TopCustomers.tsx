@@ -19,21 +19,23 @@ const TopCustomers = () => {
       <div className='mt-4 flex flex-col gap-4'>
         {customers
           .map((customer) => (
-            <div key={customer._id} className='flex flex-row'>
-              <div className='w-10 h-10 min-w-[2.5rem] bg-gray-200 rounded-sm'>
+            <div
+              key={customer._id}
+              className='flex flex-row items-center bg-neutral-600 rounded-sm p-2'>
+              {/* <div className='w-10 h-10 min-w-[2.5rem] bg-gray-200 rounded-sm'>
                 <img
                   className='w-full h-full object-cover rounded-sm'
                   src='https://xsgames.co/randomusers/avatar.php?g=male'
                   alt='customer'
                 />
-              </div>
-              <div className='ml-4 flex-1'>
+              </div> */}
+              <div className='flex-1'>
                 <p className='text-sm text-white'>{customer._id}</p>
                 <span className='text-green-500 text-xs font-medium'>
                   {customer.totalOrder} orders
                 </span>
               </div>
-              <div className='text-sm font-medium text-gray-400 pl-1.5'>
+              <div className='text-sm font-medium text-neutral-300 pl-1.5'>
                 {customer.totalCost.toLocaleString('id-ID', {
                   style: 'currency',
                   currency: 'IDR',

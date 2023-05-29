@@ -18,7 +18,7 @@ const BoxWrapper = ({ children }: any) => {
 
 const DashboardStats = () => {
   const orders = useRecoilValue(ordersData);
-  const totalSales = orders.data
+  const totalSales = orders
     ?.filter((order: any) => order.status === 'paid')
     .filter((order: any) => {
       const date = new Date(order.createdAt);

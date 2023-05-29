@@ -8,30 +8,30 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { useRecoilValue } from 'recoil';
-import { totalSalesPerDayData } from '../../store';
+import { totalOrdersPerDayData } from '../../store';
 
-const TotalSalesPerDayChart = () => {
-  const data = useRecoilValue(totalSalesPerDayData);
-  const totalSales = [...data].reverse();
+const TotalOrdersPerDayChart = () => {
+  const data = useRecoilValue(totalOrdersPerDayData);
+  const totalOrders = [...data].reverse();
 
   return (
-    <div className='h-full bg-neutral-700 p-4 rounded-sm flex flex-col flex-1'>
+    <div className='h-[22rem] bg-neutral-700 p-4 rounded-sm flex flex-col flex-1'>
       <div className='flex justify-between'>
         <strong className='text-white font-medium'>
-          Total Sales
+          Total Orders
           <span className='text-xs font-light text-neutral-400'>
             {' '}
             (per day)
           </span>
         </strong>
         <span className='text-sm text-neutral-400 font-light'>
-          last {totalSales.length} days
+          last {totalOrders.length} days
         </span>
       </div>
       <div className='mt-3 w-full flex-1 text-xs'>
         <ResponsiveContainer width='100%' height='100%'>
           <BarChart
-            data={totalSales}
+            data={totalOrders}
             margin={{
               top: 15,
               right: 10,
@@ -39,10 +39,10 @@ const TotalSalesPerDayChart = () => {
               bottom: 0,
             }}>
             <CartesianGrid strokeDasharray='3 3 0 0' vertical={false} />
-            <XAxis dataKey='_id' />
+            <XAxis dataKey='date' />
             <YAxis />
             <Tooltip />
-            <Bar dataKey='totalSales' fill='#0284c7' />
+            <Bar dataKey='total' fill='#0284c7' />
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -50,4 +50,4 @@ const TotalSalesPerDayChart = () => {
   );
 };
 
-export default TotalSalesPerDayChart;
+export default TotalOrdersPerDayChart;
