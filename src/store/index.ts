@@ -87,6 +87,18 @@ export const popularUnitByDayData = selector({
   },
 });
 
+export const popularUnitByMonthData = selector({
+  key: 'popularUnitByMonthData',
+  get: async () => {
+    try {
+      const response = await axios.get('/analytics/popular-units/month');
+      return response.data.data;
+    } catch (error: any) {
+      return error.message;
+    }
+  },
+});
+
 export const topCustomersData = selector({
   key: 'topCustomersData',
   get: async () => {

@@ -1,5 +1,6 @@
 import AverageDurationByUnit from '../../components/cards/AverageDurationByUnit';
 import PopularUnitByDay from '../../components/cards/PopularUnitByDay';
+import PopularUnitByMonth from '../../components/cards/PopularUnitByMonth';
 import Analytics from './index';
 
 const Units = () => {
@@ -9,8 +10,9 @@ const Units = () => {
         <div className='grid gap-4 w-2/4'>
           <AverageDurationByUnit />
         </div>
-        <div className='grid gap-4 w-2/4'>
+        <div className='flex flex-col gap-4 w-2/4'>
           <PopularUnitByDay />
+          <PopularUnitByMonth />
         </div>
       </div>
     </Analytics>

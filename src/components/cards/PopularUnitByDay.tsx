@@ -64,8 +64,8 @@ const PopularUnitByDay = () => {
   const units = useRecoilValue<Unit[]>(popularUnitByDayData);
 
   return (
-    <div className='h-full bg-neutral-700 p-4 rounded-sm flex flex-col'>
-      <div className='flex justify-between'>
+    <div className='h-fit bg-neutral-700 p-4 rounded-sm flex flex-col'>
+      <div className='flex'>
         <strong className='text-white font-medium mb-1'>
           Popular Unit By Day
         </strong>
@@ -77,14 +77,14 @@ const PopularUnitByDay = () => {
           .map((item) => (
             <div
               key={item.day}
-              className='flex flex-row items-center bg-neutral-600 rounded-sm p-2'>
-              {/* <div className='w-10 h-10 min-w-[2.5rem] bg-gray-200 rounded-sm'>
+              className='flex flex-row items-center gap-4 bg-neutral-600 rounded-sm p-2'>
+              <div className='w-10 h-10 min-w-[2.5rem] bg-gray-200 rounded-sm'>
                 <img
                   className='w-full h-full object-cover rounded-sm'
-                  src='https://source.unsplash.com/100x100?camera'
+                  src='https://source.unsplash.com/100x100?iphone'
                   alt='unit'
                 />
-              </div> */}
+              </div>
               <div className='flex-1'>
                 <p className='text-sm text-white'>{item.unit}</p>
               </div>
